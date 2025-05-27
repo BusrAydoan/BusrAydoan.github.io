@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiday Activity Recommender</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Holiday Activity Recommender</h1>
+        <p class="tagline">Find the perfect activity for your trip!</p>
+
+        <div id="step1-season" class="step current-step">
+            <h2>1. Is this a summer or a winter trip?</h2>
+            <button data-choice="summer">Summer</button>
+            <button data-choice="winter">Winter</button>
+        </div>
+
+        <div id="step2-trip-type" class="step">
+            <h2>2. What kind of trip do you want?</h2>
+            <button data-choice="relaxing">Relaxing</button>
+            <button data-choice="adventure">Adventure</button>
+            <button data-choice="cultural">Cultural</button>
+        </div>
+
+        <div id="step3-duration" class="step">
+            <h2>3. How much time do you have?</h2>
+            <button data-choice="half">Half a day</button>
+            <button data-choice="full">Full day</button>
+        </div>
+
+        <div id="results" class="step">
+            <h2>Enjoy your trip! Here are some suggestions:</h2>
+            <ul id="activity-list"></ul>
+            <button id="reset-button">Start Over</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
