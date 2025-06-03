@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Movie Night Picker</h1>
+        </header>
+
+        <main id="app-content">
+            <!-- Start Screen -->
+            <section id="start-screen" class="screen active">
+                <p>Let's find a movie for you!</p>
+                <button id="startButton">Start Picking a Movie</button>
+            </section>
+
+            <!-- Age Question -->
+            <section id="age-question-screen" class="screen">
+                <h2>Are you age 12-16 or 16-22?</h2>
+                <div class="button-group">
+                    <button class="choice-button" data-choice="12-16">12-16</button>
+                    <button class="choice-button" data-choice="16-22">16-22</button>
+                </div>
+            </section>
+
+            <!-- Genre Knowledge Question -->
+            <section id="genre-knowledge-screen" class="screen">
+                <h2>Do you know what genre you want to watch?</h2>
+                <div class="button-group">
+                    <button class="choice-button" data-choice="yes">Yes</button>
+                    <button class="choice-button" data-choice="no">No, let's decide!</button>
+                </div>
+            </section>
+
+            <!-- Genre Choice Screen (12-16, Yes) -->
+            <section id="genre-choice-12-16-yes-screen" class="screen">
+                <h2>Select a genre (Age 12-16):</h2>
+                <div class="button-group vertical">
+                    <button class="choice-button" data-choice="action">Action</button>
+                    <button class="choice-button" data-choice="comedy_turbo">Comedy</button>
+                    <!-- Differentiated for clarity -->
+                    <button class="choice-button" data-choice="mystery">Mystery</button>
+                    <button class="choice-button" data-choice="sci-fi_narnia">Sci-fi</button>
+                    <!-- Differentiated for clarity -->
+                    <button class="choice-button" data-choice="musical">Musical</button>
+                </div>
+            </section>
+
+            <!-- Sub-Genre Choice Screen (12-16, No) -->
+            <section id="subgenre-choice-12-16-no-screen" class="screen">
+                <h2>Okay, let's decide!<br> Do you want to watch Comedy or Sci-fi?</h2>
+                <div class="button-group">
+                    <button class="choice-button" data-choice="comedy">Comedy</button>
+                    <button class="choice-button" data-choice="sci-fi">Sci-fi</button>
+                </div>
+            </section>
+
+            <!-- Genre Choice Screen (16-22, Yes) -->
+            <section id="genre-choice-16-22-yes-screen" class="screen">
+                <h2>Select a genre (Age 16-22):</h2>
+                <div class="button-group vertical">
+                    <button class="choice-button" data-choice="comedy_hangover">Comedy</button> <!-- Differentiated -->
+                    <button class="choice-button" data-choice="thriller">Thriller</button>
+                    <button class="choice-button" data-choice="rom-com_50first">Rom-Com</button> <!-- Differentiated -->
+                    <button class="choice-button" data-choice="period-drama">Period Drama</button>
+                    <button class="choice-button" data-choice="horror_ash">Horror</button> <!-- Differentiated -->
+                    <button class="choice-button" data-choice="mystery_death">Mystery</button> <!-- Differentiated -->
+                    <button class="choice-button" data-choice="murder">Murder</button>
+                </div>
+            </section>
+
+            <!-- Sub-Genre Choice Screen (16-22, No) -->
+            <section id="subgenre-choice-16-22-no-screen" class="screen">
+                <h2>Okay, let's decide!<br> Do you want to watch Rom-Com, Comedy, or Horror?</h2>
+                <div class="button-group">
+                    <button class="choice-button" data-choice="rom-com">Rom-Com</button>
+                    <button class="choice-button" data-choice="comedy">Comedy</button>
+                    <button class="choice-button" data-choice="horror">Horror</button>
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section id="results-screen" class="screen">
+                <h2>Here are your movie suggestions:</h2>
+                <ul id="movie-list">
+                    <!-- Movies will be populated here by JS -->
+                </ul>
+                <button id="restartButton">Start Over</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 Movie Recommender App</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
