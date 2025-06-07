@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spill the Beans! - Coffee Recommender</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Spill the Beans</h1>
+            <p>Find your perfect coffee!</p>
+        </header>
+
+        <main id="app-content">
+            <!-- Start Screen -->
+            <section id="start-screen" class="screen active">
+                <button id="startButton" class="choice-button large">Create your Coffee!</button>
+            </section>
+
+            <!-- Questions will be dynamically inserted here or use predefined hidden sections -->
+            <section id="question-screen" class="screen">
+                <h2 id="question-text"></h2>
+                <div id="options-container" class="button-group">
+                    <!-- Buttons will be dynamically added here -->
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section id="results-screen" class="screen">
+                <h2>Your Coffee Recommendation:</h2>
+                <p id="coffee-recommendation" class="recommendation-text"></p>
+                <p id="enjoy-message">Enjoy your coffee!</p>
+                <button id="restartButton" class="choice-button">Spill Again (Start Over)</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 Spill the Beans App</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
