@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dijital Bitki - İnteraktif Deneyim</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Özel Işık Karakteri (Mouse Cursor) -->
+  <div id="spirit-cursor"></div>
+
+  <!-- Üst Gösterge Paneli -->
+  <div class="hud">
+    <div class="stat-box">
+      <span class="stat-label">Huzur / Mutluluk</span>
+      <div class="stat-bar"><div id="happiness-bar" class="stat-fill"></div></div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-label">Gövde Boyu</span>
+      <div id="height-text" class="stat-val-green">70 px</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-label">Çiçek Boyutu</span>
+      <div id="flower-text" class="stat-val-pink">Yok</div>
+    </div>
+  </div>
+
+  <!-- Diyalog Balonu -->
+  <div id="dialogue-bubble">Merhaba... Benimle vakit geçirir misin? ✨</div>
+
+  <!-- Çizim Tuvali (Canvas) -->
+  <canvas id="plantCanvas"></canvas>
+
+  <!-- Alt Kontrol Paneli -->
+  <div class="controls-panel">
+    <div class="key-badge"><span class="key">W</span> Çiçekleri Büyüt</div>
+    <div class="key-badge"><span class="key">A</span> Çiçek Açtır</div>
+    <div class="key-badge"><span class="key">S</span> Gübre Ver (Gövdeyi Uzat)</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
