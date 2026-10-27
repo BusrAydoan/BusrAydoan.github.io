@@ -1,0 +1,160 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background: radial-gradient(circle at center, #111a24 0%, #05080c 100%);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  cursor: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+/* Mouse Karakteri */
+#spirit-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle, #ffffff 20%, #74b9ff 80%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px #74b9ff, 0 0 40px #74b9ff;
+  transition: transform 0.05s ease-out;
+}
+
+/* Üst Panel */
+.hud {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 25px;
+  border-radius: 20px;
+  display: flex;
+  gap: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-bar {
+  width: 100px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, #00b894, #55efc4);
+  transition: width 0.3s ease;
+}
+
+.stat-val-green {
+  font-size: 12px;
+  font-weight: bold;
+  color: #55efc4;
+}
+
+.stat-val-pink {
+  font-size: 12px;
+  font-weight: bold;
+  color: #ff7675;
+}
+
+/* Diyalog Balonu */
+#dialogue-bubble {
+  position: absolute;
+  top: 90px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #2d3436;
+  padding: 10px 18px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+#dialogue-bubble.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#dialogue-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.95) transparent;
+}
+
+/* Canvas Tuvali */
+canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Tuş İpuçları Paneli */
+.controls-panel {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  z-index: 10;
+}
+
+.key-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 10px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.key {
+  background: #ffffff;
+  color: #1a1a1a;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 0 3px 0 #ccc;
+}
