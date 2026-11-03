@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporal Snake - Temporality Experience</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Üst Panel & Kontroller -->
+        <header class="hud-header">
+            <div class="brand">
+                <h1>TEMPORAL SNAKE</h1>
+                <span class="tagline">Interaction happens in time. Body is memory.</span>
+            </div>
+            
+            <div class="stats-panel">
+                <div class="stat-box">
+                    <span class="stat-label">TIME MEMORY</span>
+                    <span id="memoryVal" class="stat-value">2.0s</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">SEEDS COLLECTED</span>
+                    <span id="scoreVal" class="stat-value">0</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="modeBtn" class="btn" aria-label="Toggle delay mode">Mode: 2000ms Echo</button>
+                <button id="resetBtn" class="btn secondary" aria-label="Reset game">Reset</button>
+            </div>
+        </header>
+
+        <!-- Oyun Alanı -->
+        <div class="stage-container" id="stageWrapper" tabindex="0" aria-label="Game canvas stage. Move using mouse, touch, or arrow keys.">
+            <canvas id="gameCanvas"></canvas>
+            <div id="notice" class="notice-overlay hidden">RECORDING PAST HISTORY...</div>
+            <div id="gameOverOverlay" class="game-over-overlay hidden">
+                <h2>TEMPORAL COLLISION</h2>
+                <p>You intersected with your own past echo.</p>
+                <button id="restartBtn" class="btn">Play Again</button>
+            </div>
+        </div>
+
+        <!-- Lejand & Açıklamalar -->
+        <footer class="legend">
+            <div class="legend-item">
+                <span class="indicator present-ind"></span>
+                <span><strong>Present (Head):</strong> Current Input Location</span>
+            </div>
+            <div class="legend-item">
+                <span class="indicator echo-ind"></span>
+                <span><strong>Echo (Body):</strong> Timestamped Path Memory</span>
+            </div>
+            <div class="legend-item">
+                <span class="indicator food-ind"></span>
+                <span><strong>Temporal Seed:</strong> Expands Memory Length</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
