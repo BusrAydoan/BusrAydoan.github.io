@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Mükemmel Denge: Geri bildirim ve gizli momentum üzerine etkileşimli deney.">
+  <title>Mükemmel Denge — Geri Bildirim Deneyi</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="page-header">
+      <div class="header-content">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> ETKİLEŞİMLİ DENEY / GERİ BİLDİRİM</p>
+        <h1>Mükemmel <span>Denge.</span></h1>
+        <p class="subtitle">Topu platformda tutun. Hareketini ne zaman düzelteceğinize karar vermek için geri bildirimi kullanın.</p>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="experiment panel" aria-labelledby="experiment-title">
+        <div class="section-header">
+          <div>
+            <p class="micro-heading">DENEY</p>
+            <h2 id="experiment-title">Dengenizi Bulun</h2>
+          </div>
+          <span class="status-pill" id="attempt-status">Devam ediyor</span>
+        </div>
+
+        <fieldset class="mode-switch" id="mode-switch">
+          <legend>Geri Bildirim Modu</legend>
+          <div class="mode-options">
+            <label class="mode-option">
+              <input type="radio" name="feedback-mode" value="full" checked>
+              <span class="mode-option-content">
+                <strong>Tam Geri Bildirim</strong>
+                <small>Konum + Momentum</small>
+              </span>
+            </label>
+            <label class="mode-option">
+              <input type="radio" name="feedback-mode" value="limited">
+              <span class="mode-option-content">
+                <strong>Sınırlı Geri Bildirim</strong>
+                <small>Konum var, momentum göstergesi yok</small>
+              </span>
+            </label>
+          </div>
+          <p class="field-note">Modu değiştirmek denemeyi sıfırlar. Kurallar aynı kalır.</p>
+        </fieldset>
+
+        <div class="stage-container">
+          <canvas id="physics-canvas" width="600" height="320"></canvas>
+          <div class="stage-overlay">
+            <span class="stage-label left-label">SOL KENAR</span>
+            <span class="stage-label right-label">SAĞ KENAR</span>
+          </div>
+        </div>
+
+        <div class="readouts" aria-label="Anlık Bilgiler">
+          <div class="readout">
+            <span class="readout-label">TOP KONUMU</span>
+            <strong id="position-text">Merkeze Yakın</strong>
+          </div>
+          <div class="readout">
+            <span class="readout-label">PLATFORM EĞİMİ</span>
+            <strong id="tilt-text">Düz · 0°</strong>
+          </div>
+          <div class="readout momentum-readout" id="momentum-readout">
+            <span class="readout-label">MOMENTUM <span class="full-tag">SADECE TAM MOD</span></span>
+            <div class="momentum-value">
+              <span class="momentum-arrow" id="momentum-arrow" aria-hidden="true">→</span>
+              <strong id="momentum-text">Sağ · 35 birim/sn</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-section">
+          <p class="micro-heading">KONTROLLER</p>
+          <div class="control-buttons" role="group" aria-label="Platform kontrolleri">
+            <button type="button" id="tilt-left" class="action-button"><span class="button-symbol" aria-hidden="true">←</span> Sola Eğ</button>
+            <button type="button" id="level" class="action-button"><span class="button-symbol" aria-hidden="true">−</span> Düzleştir</button>
+            <button type="button" id="tilt-right" class="action-button"><span class="button-symbol" aria-hidden="true">→</span> Sağa Eğ</button>
+          </div>
+          <div class="controls-footer">
+            <p id="acknowledgement" class="acknowledgement">Girdi için hazır.</p>
+            <button type="button" id="reset" class="reset-button"><span aria-hidden="true">↻</span> Denemeyi Sıfırla</button>
+          </div>
+        </div>
+
+        <div class="outcome" id="outcome" hidden role="alert">
+          <strong id="outcome-title">Top platformdan düştü.</strong>
+          <p>Bu deneme sona erdi. Tekrar denemek için "Denemeyi Sıfırla" düğmesine basın.</p>
+        </div>
+
+        <p class="live-message" id="live-message" role="status" aria-live="polite" aria-atomic="true">Deneme başladı. Top merkeze yakın.</p>
+      </section>
+
+      <aside class="sidebar" aria-label="Deney Rehberi">
+        <section class="panel guide-panel">
+          <p class="micro-heading">GÖREVİNİZ</p>
+          <h2>Gözlemle. Harekete Geç. Düzelt.</h2>
+          <p>Topun her iki kenara da ulaşmasını engellemeye çalışın. Her düğme basışı platform eğimini <strong>4°</strong> değiştirir. Platform tekrar düzleşse bile top hareket etmeye devam eder.</p>
+          <ol class="guide-steps">
+            <li>Topu ve mevcut geri bildirimleri izleyin.</li>
+            <li>Eğimi değiştirmek için <strong>Sola Eğ</strong> veya <strong>Sağa Eğ</strong> düğmelerine basın.</li>
+            <li>Platformu düzleştirmek için <strong>Düzleştir</strong> düğmesini kullanın.</li>
+            <li>Top düşerse <strong>Denemeyi Sıfırla</strong> düğmesini seçin.</li>
+          </ol>
+          <div class="tip">
+            <span class="tip-symbol" aria-hidden="true">i</span>
+            <p>Top her denemede aynı küçük sağa doğru hareketle başlar. Eğim mevcut momentumu anında sıfırlamaz.</p>
+          </div>
+        </section>
+
+        <section class="panel compare-panel">
+          <p class="micro-heading">KARŞILAŞTIRMA YAPIN</p>
+          <h2>Geri bildirimle ne değişir?</h2>
+          <p>Bir arkadaşınızdan iki modu da denemesini isteyin. Her deneme aynı konum ve hızdan başlar.</p>
+          <p class="compare-question">Ne zaman harekete geçeceğinize karar vermenize ne yardımcı oldu?</p>
+          <p class="compare-question">Tereddüt ettiniz mi veya bir düğmeye tekrar bastınız mı?</p>
+          <p class="compare-question">Topun hangi yöne hareket ettiğini anlayabildiniz mi?</p>
+          <p class="privacy-note">Bu sayfa tarafından hiçbir puan veya gözlem kaydedilmez.</p>
+        </section>
+      </aside>
+    </main>
+    <footer class="page-footer">MÜKEMMEL DENGE <span aria-hidden="true">·</span> Sonucu değil, geri bildirim döngüsünü tasarlayın.</footer>
+  </div>
+</body>
+</html>
