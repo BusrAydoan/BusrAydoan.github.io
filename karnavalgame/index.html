@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zamansal Karnaval Poligonu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <header class="header">
+      <h1>ZAMANSAL KARNAVAL POLİGONU</h1>
+      <p class="subtitle">Agency (Tıkla ve Nişan Al) &bull; Temporality (2.0s Mermi Uçuş Süresi)</p>
+    </header>
+
+    <div class="canvas-wrapper">
+      <canvas id="gameCanvas" width="800" height="600"></canvas>
+      <div id="statusLabel" class="status-label">Hazır: 3 Hedef Vur ve Ödülü Kazan!</div>
+      
+      <!-- ÖDÜL KAZANMA EKRANI -->
+      <div id="restartOverlay" class="restart-overlay">
+        <div class="win-card">
+          <h2>TEBRİKLER KAZANDIN!</h2>
+          <p>3 Hedefi Başarıyla Vurdun ve Büyük Ayıcık Ödülünü Kazandın!</p>
+          <button id="overlayResetBtn" class="btn">Yeniden Başlat</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="controls">
+      <button id="resetBtn" class="btn">Stantı Sıfırla</button>
+      <div class="legend">
+        <span class="legend-item"><span class="dot live-dot"></span> Anlık Nişan (Agency)</span>
+        <span class="legend-item"><span class="dot echo-dot"></span> 2.0s Uçuş ve Patlama (Temporality)</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
