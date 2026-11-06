@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <!-- Mobil cihazlarda doğru ölçeklendirme için viewport ayarı -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Zamansal Karnaval Poligonu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main-wrapper">
+    <!-- OYUN ALANI -->
+    <div class="game-container">
+      <header class="header">
+        <h1>ZAMANSAL KARNAVAL POLİGONU</h1>
+        <p class="subtitle">Disney 3D Animasyon Estetiği &bull; Agency & Temporality (2.0s)</p>
+      </header>
+
+      <div class="canvas-wrapper">
+        <canvas id="gameCanvas" width="960" height="540"></canvas>
+        <div id="statusLabel" class="status-label">Hazır: 3 Hedef Vur ve Ödülü Kazan!</div>
+        
+        <!-- ÖDÜL KAZANMA EKRANI -->
+        <div id="restartOverlay" class="restart-overlay">
+          <div class="win-card">
+            <h2>TEBRİKLER KAZANDIN!</h2>
+            <p>3 Hedefi Başarıyla Vurdun ve Dev Peluş Ayıcık Ödülünü Kazandın!</p>
+            <button id="overlayResetBtn" class="btn">Yeniden Başlat</button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="controls">
+        <button id="resetBtn" class="btn">Stantı Sıfırla</button>
+        <div class="legend">
+          <span class="legend-item"><span class="dot live-dot"></span> Nişan (Agency)</span>
+          <span class="legend-item"><span class="dot echo-dot"></span> 2.0s Uçuş (Temporality)</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- YAN REHBER PANELİ -->
+    <aside class="sidebar-guide">
+      <h2>OYUN REHBERİ</h2>
+      <ul>
+        <li><strong>1. Nişan Al (Agency):</strong> Farenizi hareket ettirerek veya ekrana dokunarak pirinç topu hedeflere yönlendirin.</li>
+        <li><strong>2. Ateş Et:</strong> Tıklayarak veya dokunarak kırmızı paintball mermisini fırlatın.</li>
+        <li><strong>3. Zamanı Hesapla (Temporality):</strong> Mermi hedefe <strong>2.0 saniyede</strong> varır. Hedeflerin gelecekteki konumunu tahmin edin!</li>
+        <li><strong>4. Ödülü Kazan:</strong> 3 hedefi vurduğunuzda dev oyuncak ayı ödülü açılır.</li>
+      </ul>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
