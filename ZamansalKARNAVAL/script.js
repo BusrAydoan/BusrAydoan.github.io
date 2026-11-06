@@ -566,6 +566,7 @@ function drawCelebrations() {
     ctx.save(); ctx.globalAlpha = Math.max(p.alpha, 0); ctx.fillStyle = p.color;
     ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2); ctx.fill(); ctx.restore();
   });
+  
   state.popups.forEach(pop => {
     ctx.save(); 
     ctx.globalAlpha = Math.max(pop.alpha, 0); 
