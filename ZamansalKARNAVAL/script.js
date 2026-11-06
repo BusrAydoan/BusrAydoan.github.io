@@ -1,6 +1,10 @@
 const DESIGN = {
   delayMs: 2000,
   paintColor: '#d61c1c',
+  woodDark: '#3a2113',
+  woodMid: '#5c371d',
+  goldDark: '#99741e',
+  goldLight: '#fce38a',
   topTrackSpeed: 1.4,
   bottomTrackSpeed: 2.6,
   targetRadius: 22,
@@ -67,6 +71,7 @@ const overlayResetBtn = document.getElementById('overlayResetBtn');
 const restartOverlay = document.getElementById('restartOverlay');
 const statusLabel = document.getElementById('statusLabel');
 
+// TOPUN KONUMU (Siyah Dairesel Taban ile Namlu Aynı Noktada Hizalandı)
 const GUN_X = 800;
 const GUN_Y = 500;
 
@@ -100,44 +105,24 @@ function handleShoot(targetX, targetY) {
   statusLabel.textContent = `Ateşlendi! Mermi 2.0 saniye sonra varış noktasına ulaşacak.`;
 }
 
-// Koordinat Dönüştürücü (Duyarlı / Responsive Ekranlar İçin)
-function getCanvasCoordinates(e) {
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-  return {
-    x: (clientX - rect.left) * scaleX,
-    y: (clientY - rect.top) * scaleY
-  };
-}
-
 canvas.addEventListener('mousemove', (e) => {
-  const coords = getCanvasCoordinates(e);
-  state.mouseX = coords.x;
-  state.mouseY = coords.y;
+  const rect = canvas.getBoundingClientRect();
+  state.mouseX = e.clientX - rect.left;
+  state.mouseY = e.clientY - rect.top;
 });
 
 canvas.addEventListener('click', (e) => {
-  const coords = getCanvasCoordinates(e);
-  handleShoot(coords.x, coords.y);
+  const rect = canvas.getBoundingClientRect();
+  handleShoot(e.clientX - rect.left, e.clientY - rect.top);
 });
 
-canvas.addEventListener('touchstart', (e) => {
-  e.preventDefault();
-  const coords = getCanvasCoordinates(e);
-  state.mouseX = coords.x;
-  state.mouseY = coords.y;
-  handleShoot(coords.x, coords.y);
-}, { passive: false });
-
-canvas.addEventListener('touchmove', (e) => {
-  e.preventDefault();
-  const coords = getCanvasCoordinates(e);
-  state.mouseX = coords.x;
-  state.mouseY = coords.y;
-}, { passive: false });
+// ALTERNATİF GİRİŞ (KLAVYE DESTEĞİ): Space tuşuna basıldığında o anki imleç konumuna ateş eder
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    e.preventDefault(); // Sayfanın aşağı kaymasını önler
+    handleShoot(state.mouseX, state.mouseY);
+  }
+});
 
 resetBtn.addEventListener('click', resetGame);
 overlayResetBtn.addEventListener('click', resetGame);
@@ -164,6 +149,7 @@ function triggerCelebration(x, y) {
 function triggerWinCelebration() {
   state.gameWon = true;
   playWinFanfare();
+
   for (let i = 0; i < 180; i++) {
     const x = Math.random() * canvas.width;
     const y = Math.random() * (canvas.height / 2);
@@ -177,6 +163,7 @@ function triggerWinCelebration() {
       alpha: 1.0
     });
   }
+
   setTimeout(() => {
     restartOverlay.classList.add('active');
   }, 2800);
@@ -277,7 +264,7 @@ function drawCarnivalStage() {
   ctx.fillStyle = counterGrad;
   ctx.fillRect(0, 400, w, h - 400);
 
-  ctx.fillStyle = '#99741e';
+  ctx.fillStyle = DESIGN.goldDark;
   ctx.fillRect(0, 400, w, 14);
   const goldChutes = ctx.createLinearGradient(0, 400, 0, 414);
   goldChutes.addColorStop(0, '#ffe885');
@@ -385,12 +372,12 @@ function drawScoreBoard() {
   ctx.fillStyle = boardGrad;
   ctx.fillRect(-75, -25, 150, 50);
 
-  ctx.strokeStyle = '#fce38a';
+  ctx.strokeStyle = DESIGN.goldLight;
   ctx.lineWidth = 3;
   ctx.strokeRect(-75, -25, 150, 50);
 
   ctx.font = 'bold 12px "Segoe UI", sans-serif';
-  ctx.fillStyle = '#fce38a';
+  ctx.fillStyle = DESIGN.goldLight;
   ctx.textAlign = 'center';
   ctx.fillText("SKOR TABELASI", 0, -7);
 
@@ -428,6 +415,7 @@ function drawTargets() {
       ctx.beginPath(); ctx.arc(14, -20, 2, 0, Math.PI * 2); ctx.fill();
     } else {
       const r = DESIGN.targetRadius;
+      
       const tGrad1 = ctx.createRadialGradient(-4, -14, 2, 0, -10, r);
       tGrad1.addColorStop(0, '#ff6666');
       tGrad1.addColorStop(1, '#990000');
@@ -565,6 +553,19 @@ function drawCelebrations() {
     ctx.save(); ctx.globalAlpha = Math.max(p.alpha, 0); ctx.fillStyle = p.color;
     ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2); ctx.fill(); ctx.restore();
   });
+  state.popups.push(pop => {
+    ctx.save(); 
+    ctx.globalAlpha = Math.max(pop.alpha, 0); 
+    ctx.font = 'bold 28px "Segoe UI", sans-serif';
+    ctx.fillStyle = '#fce38a'; 
+    ctx.strokeStyle = '#800a0a'; 
+    ctx.lineWidth = 5;
+    ctx.textAlign = 'center'; 
+    ctx.strokeText(pop.text, pop.x, pop.y); 
+    ctx.fillText(pop.text, pop.x, pop.y); 
+    ctx.restore();
+  });
+  // Doğru array döngüsü:
   state.popups.forEach(pop => {
     ctx.save(); 
     ctx.globalAlpha = Math.max(pop.alpha, 0); 
@@ -592,3 +593,10 @@ function loop(timestamp) {
 
 initTargets();
 requestAnimationFrame(loop);
+  
+
+
+
+
+
+
