@@ -116,10 +116,23 @@ canvas.addEventListener('click', (e) => {
   handleShoot(e.clientX - rect.left, e.clientY - rect.top);
 });
 
-// ALTERNATİF GİRİŞ (KLAVYE DESTEĞİ): Space tuşuna basıldığında o anki imleç konumuna ateş eder
+// KLAVYE DESTEĞİ (Ok Tuşları ile Nişan Alma + Space ile Ateş Etme)
 window.addEventListener('keydown', (e) => {
-  if (e.code === 'Space') {
-    e.preventDefault(); // Sayfanın aşağı kaymasını önler
+  const step = 25;
+  if (e.code === 'ArrowLeft') {
+    state.mouseX = Math.max(50, state.mouseX - step);
+    e.preventDefault();
+  } else if (e.code === 'ArrowRight') {
+    state.mouseX = Math.min(canvas.width - 50, state.mouseX + step);
+    e.preventDefault();
+  } else if (e.code === 'ArrowUp') {
+    state.mouseY = Math.max(100, state.mouseY - step);
+    e.preventDefault();
+  } else if (e.code === 'ArrowDown') {
+    state.mouseY = Math.min(canvas.height - 100, state.mouseY + step);
+    e.preventDefault();
+  } else if (e.code === 'Space') {
+    e.preventDefault();
     handleShoot(state.mouseX, state.mouseY);
   }
 });
@@ -553,19 +566,6 @@ function drawCelebrations() {
     ctx.save(); ctx.globalAlpha = Math.max(p.alpha, 0); ctx.fillStyle = p.color;
     ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2); ctx.fill(); ctx.restore();
   });
-  state.popups.push(pop => {
-    ctx.save(); 
-    ctx.globalAlpha = Math.max(pop.alpha, 0); 
-    ctx.font = 'bold 28px "Segoe UI", sans-serif';
-    ctx.fillStyle = '#fce38a'; 
-    ctx.strokeStyle = '#800a0a'; 
-    ctx.lineWidth = 5;
-    ctx.textAlign = 'center'; 
-    ctx.strokeText(pop.text, pop.x, pop.y); 
-    ctx.fillText(pop.text, pop.x, pop.y); 
-    ctx.restore();
-  });
-  // Doğru array döngüsü:
   state.popups.forEach(pop => {
     ctx.save(); 
     ctx.globalAlpha = Math.max(pop.alpha, 0); 
@@ -593,10 +593,3 @@ function loop(timestamp) {
 
 initTargets();
 requestAnimationFrame(loop);
-  
-
-
-
-
-
-
