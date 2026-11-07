@@ -71,7 +71,7 @@ const overlayResetBtn = document.getElementById('overlayResetBtn');
 const restartOverlay = document.getElementById('restartOverlay');
 const statusLabel = document.getElementById('statusLabel');
 
-// TOPUN KONUMU (Siyah Dairesel Taban ile Namlu Aynı Noktada Hizalandı)
+// TOPUN KONUMU
 const GUN_X = 800;
 const GUN_Y = 500;
 
@@ -105,18 +105,59 @@ function handleShoot(targetX, targetY) {
   statusLabel.textContent = `Ateşlendi! Mermi 2.0 saniye sonra varış noktasına ulaşacak.`;
 }
 
-canvas.addEventListener('mousemove', (e) => {
+// DOKUNMA VEYA FARE KOORDİNATLARINI ÇÖZÜMLEME FONKSİYONU
+function getCanvasCoordinates(e) {
   const rect = canvas.getBoundingClientRect();
-  state.mouseX = e.clientX - rect.left;
-  state.mouseY = e.clientY - rect.top;
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+
+  let clientX, clientY;
+  if (e.touches && e.touches.length > 0) {
+    clientX = e.touches[0].clientX;
+    clientY = e.touches[0].clientY;
+  } else if (e.changedTouches && e.changedTouches.length > 0) {
+    clientX = e.changedTouches[0].clientX;
+    clientY = e.changedTouches[0].clientY;
+  } else {
+    clientX = e.clientX;
+    clientY = e.clientY;
+  }
+
+  return {
+    x: (clientX - rect.left) * scaleX,
+    y: (clientY - rect.top) * scaleY
+  };
+}
+
+// FARE ETKİLEŞİMLERİ
+canvas.addEventListener('mousemove', (e) => {
+  const coords = getCanvasCoordinates(e);
+  state.mouseX = coords.x;
+  state.mouseY = coords.y;
 });
 
 canvas.addEventListener('click', (e) => {
-  const rect = canvas.getBoundingClientRect();
-  handleShoot(e.clientX - rect.left, e.clientY - rect.top);
+  const coords = getCanvasCoordinates(e);
+  handleShoot(coords.x, coords.y);
 });
 
-// KLAVYE DESTEĞİ (Ok Tuşları ile Nişan Alma + Space ile Ateş Etme)
+// DOKUNMATİK EKRAN (MOBİL / TABLET) ETKİLEŞİMLERİ
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault(); // Sayfa kaymasını önler
+  const coords = getCanvasCoordinates(e);
+  state.mouseX = coords.x;
+  state.mouseY = coords.y;
+  handleShoot(coords.x, coords.y);
+}, { passive: false });
+
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  const coords = getCanvasCoordinates(e);
+  state.mouseX = coords.x;
+  state.mouseY = coords.y;
+}, { passive: false });
+
+// KLAVYE DESTEĞİ
 window.addEventListener('keydown', (e) => {
   const step = 25;
   if (e.code === 'ArrowLeft') {
