@@ -1,28 +1,37 @@
-# Zamansal Karnaval Poligonu
+# The Last 30 Seconds
 
-### Premises
-- **01 Agency:** The user directly controls the cannon angle via mouse movement and fires paintball shots upon click, dynamically changing the system state and triggering a prize celebration upon 3 hits.
-- **04 Temporality:** Interaction happens over time. Paintball projectiles have a fixed 2.0-second delay trajectory, requiring the participant to predict future target positions rather than relying on instant reflexes.
+**Premises:** Agency × Temporality  
+**One-line idea:** Plan a 30-second route; each completed loop leaves an Echo that repeats your past actions and can help you hold the island's three mechanisms together.
 
-### Description
-A nostalgic 3D Disney/Pixar-style carnival shooting gallery that combines instant aiming agency with a 2.0-second flight delay to test temporal anticipation.
+## How to play
+- Start the loop.
+- Move with **WASD** or the **arrow keys**. You can also click/drag on the island or use the labelled on-screen direction buttons.
+- Stay on a numbered mechanism to keep it active. Leaving releases it.
+- At the end of each 30-second loop, your movement becomes an Echo. Echoes replay the route in later loops.
+- Up to three Echoes remain. When a fourth is recorded, the oldest one leaves.
+- Keep all three mechanisms occupied at the same time to awaken the lighthouse.
 
----
+## Design rules
+The editable settings are at the top of `script.js`, in the `DESIGN` object:
+- `loopSeconds`: loop duration
+- `maxEchoes`: memory limit
+- `moveSpeed`: movement speed
+- `plateRadius`: mechanism activation radius
+- `rules`: mechanism = hold, Echo overflow = oldest, incomplete loop = continue, island effect = static, ending = lighthouse
 
-### How to Use
-1. **Aim:** Move your mouse across the screen to direct the brass cannon.
-2. **Shoot:** Click anywhere to launch a red paintball projectile toward your target.
-3. **Anticipate:** Account for the 2.0-second temporal delay as targets move along the upper and lower tracks.
-4. **Win & Reset:** Hit 3 targets to unlock the grand teddy bear prize celebration. Use the "Stantı Sıfırla" button to restart the game.
+The island map and its decorative items are embedded in `DESIGN.world` in `script.js`. The island remains static; only mechanism states and the lighthouse ending respond.
 
----
+## Files
+- `index.html` — page structure, controls, instructions and accessible labels
+- `style.css` — visual layout and responsive styling
+- `script.js` — island drawing, movement, loop recording, Echo playback and game rules
+- `im-fell-english-*.ttf` — local display font files
 
-### AI Note
-AI tools (Gemini) were used to generate the base HTML5 Canvas rendering loop, CSS layouts, and Web Audio API synthesizer functions. I manually refactored all timing constants and speeds into a centralized `DESIGN` configuration object to ensure full control over mechanics and live-coding readiness.
+## Credits
+Island plan and character recipes adapted from **Interactive Media Applications lab., Mert Seven, PhD**.
 
----
+## AI note
+ChatGPT was used to help implement and document the selected game rules in the supplied HTML, CSS and JavaScript project files. Review and understand the `DESIGN` settings and rule functions before presenting; the live-change settings are intentionally grouped near the top of `script.js`.
 
-### Credits
-- Developed for **NMED 3203 / Interactive Media Applications** (Lab Assignment).
-- Concept and theory based on **Agency (01)** and **Temporality (04)** premises from the course framework.
-- Built with HTML5 Canvas, CSS, and Web Audio API.
+## Theory and rationale
+The assignment also requires a 315–385 word design rationale and at least two readings that you have personally opened, cited by author and year. Add that text and its reference links here or in `RATIONALE.md`; do not cite sources you have not read.

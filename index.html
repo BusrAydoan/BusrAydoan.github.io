@@ -1,42 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holiday Activity Recommender</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d9e3d7">
+  <title>The Last 30 Seconds</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Holiday Activity Recommender</h1>
-        <p class="tagline">Find the perfect activity for your trip!</p>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">A TIME-LOOP ISLAND GAME</p>
+        <h1>The Last <em>30</em> Seconds</h1>
+        <p class="subtitle">Your past selves remember the way. Make them work together.</p>
+      </div>
+      <div class="status-chip"><span class="status-dot"></span><span id="mode-label">READY</span></div>
+    </header>
 
-        <div id="step1-season" class="step current-step">
-            <h2>1. Is this a summer or a winter trip?</h2>
-            <button data-choice="summer">Summer</button>
-            <button data-choice="winter">Winter</button>
+    <section class="game-layout" aria-label="Game">
+      <div class="stage-column">
+        <div class="stage-topline">
+          <div class="cycle-label">CYCLE <strong id="cycle-number">01</strong></div>
+          <div class="timer-readout"><span id="time-left">30s</span><span class="timer-caption">REMAINING</span></div>
         </div>
-
-        <div id="step2-trip-type" class="step">
-            <h2>2. What kind of trip do you want?</h2>
-            <button data-choice="relaxing">Relaxing</button>
-            <button data-choice="adventure">Adventure</button>
-            <button data-choice="cultural">Cultural</button>
+        <div class="timer-track"><div id="timer-fill" class="timer-fill"></div></div>
+        <div class="canvas-wrap">
+          <canvas id="game" tabindex="0" aria-label="Island game stage. Use arrow keys or WASD to move. Click or drag to move toward a location."></canvas>
+          <div class="map-legend">
+            <span><i class="legend-live"></i> Present</span>
+            <span><i class="legend-echo"></i> Echo</span>
+            <span><i class="legend-plate"></i> Mechanism</span>
+          </div>
         </div>
-
-        <div id="step3-duration" class="step">
-            <h2>3. How much time do you have?</h2>
-            <button data-choice="half">Half a day</button>
-            <button data-choice="full">Full day</button>
+        <div class="notice" id="notice" role="status" aria-live="polite">Reach a numbered plate and stay there. Your path becomes an Echo.</div>
+        <div class="controls-row">
+          <div class="movement-controls">
+            <div class="control-copy"><strong>Move</strong><span>WASD / Arrow keys / Tap stage</span></div>
+            <div class="dpad" aria-label="Touch movement controls">
+              <button class="pad-up" data-pad="w" aria-label="Move up">↑</button>
+              <button class="pad-left" data-pad="a" aria-label="Move left">←</button>
+              <button class="pad-down" data-pad="s" aria-label="Move down">↓</button>
+              <button class="pad-right" data-pad="d" aria-label="Move right">→</button>
+            </div>
+          </div>
+          <div class="action-controls">
+            <button id="start-button" class="button button-primary">START LOOP</button>
+            <button id="reset-button" class="button button-quiet">RESET</button>
+          </div>
         </div>
+      </div>
 
-        <div id="results" class="step">
-            <h2>Enjoy your trip! Here are some suggestions:</h2>
-            <ul id="activity-list"></ul>
-            <button id="reset-button">Start Over</button>
-        </div>
-    </div>
+      <aside class="sidebar">
+        <section class="side-card objective-card">
+          <p class="eyebrow">THE PURPOSE</p>
+          <h2>Wake the lighthouse.</h2>
+          <p>Hold all three mechanisms at the same time. Your Echoes repeat the paths you leave behind.</p>
+          <div class="lighthouse-mark" aria-hidden="true">⌁</div>
+        </section>
 
-    <script src="script.js"></script>
+        <section class="side-card">
+          <div class="section-heading"><h3>Mechanisms</h3><span>3 PLACES</span></div>
+          <div id="plate-list" class="plate-list"></div>
+        </section>
+
+        <section class="side-card">
+          <div class="section-heading"><h3>Past selves</h3><span id="echo-count">0 / 3</span></div>
+          <div id="echo-list" class="echo-list"><div class="empty-state">No memories yet</div></div>
+          <p class="small-note">The oldest Echo leaves when a fourth memory is created.</p>
+        </section>
+
+        <section class="side-card how-card">
+          <h3>How to play</h3>
+          <ol>
+            <li>Start the 30-second loop.</li>
+            <li>Reach a numbered plate and stay on it.</li>
+            <li>At the end, your path becomes an Echo.</li>
+            <li>Use up to three Echoes to hold all plates together.</li>
+          </ol>
+        </section>
+        <footer class="credit">Island plan and character recipes adapted from <strong>Interactive Media Applications lab., Mert Seven, PhD</strong>.</footer>
+      </aside>
+    </section>
+
+    <section id="win-panel" class="win-panel" hidden>
+      <div class="win-content">
+        <p class="eyebrow">THE ISLAND REMEMBERS</p>
+        <h2>The lighthouse is awake.</h2>
+        <p>Three past selves held the mechanisms while the present reached the light.</p>
+        <button id="play-again" class="button button-primary">PLAY AGAIN</button>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
