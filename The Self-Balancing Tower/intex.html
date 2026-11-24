@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Self-Balancing Tower</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>The Self-Balancing Tower</h1>
+            <p class="subtitle">Your actions change the system. Stack blocks carefully before the platform tips.</p>
+        </header>
+
+        <section class="game-area">
+            <canvas id="gameCanvas" width="800" height="600" aria-label="Interactive balance simulation canvas" tabindex="0"></canvas>
+            
+            <div class="hud" aria-live="polite">
+                <span id="scoreDisplay">Blocks Stacked: 0</span>
+                <span id="statusDisplay">Status: Active</span>
+            </div>
+        </section>
+
+        <nav class="controls" aria-label="Game controls">
+            <button id="pauseBtn" class="btn">Pause (P)</button>
+            <button id="resetBtn" class="btn">Reset (R)</button>
+        </nav>
+
+        <section class="instructions">
+            <h2>Controls</h2>
+            <ul>
+                <li><strong>Mouse / Touch:</strong> Move cursor horizontally across the top bar and click to drop a block.</li>
+                <li><strong>Keyboard:</strong> Left/Right Arrows to move drop position, Spacebar to drop, P to pause, R to reset, Esc to cancel.</li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
