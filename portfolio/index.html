@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Büşra Aydoğan · Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+
+<header>
+  <a class="brand" href="#top" aria-label="Büşra Aydoğan, back to top">
+    <span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40"><ellipse cx="20" cy="20" rx="18" ry="11" fill="#efe9dc"/><circle cx="20" cy="20" r="8" fill="#f3573a"/><circle cx="20" cy="20" r="4" fill="#141210"/></svg></span>
+    Büşra Aydoğan
+  </a>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
+  <nav aria-label="Main">
+    <ul id="menu">
+      <li><a href="#top">Hero</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#facts">Fun facts</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="sun" aria-hidden="true"></div><div class="tape" aria-hidden="true"></div>
+  <h1><span>Büşra</span><span class="l2">Aydoğan</span></h1>
+  <p class="promise" id="promise">Personal portfolio</p>
+
+  <div class="stage">
+    <div class="panel">
+      <fieldset class="chips">
+        <legend>Choose how this site looks</legend>
+        <button class="chip" data-theme="sun" aria-pressed="true">Sun</button>
+        <button class="chip" data-theme="lilac" aria-pressed="false">Lilac</button>
+        <button class="chip" data-theme="tomato" aria-pressed="false">Tomato</button>
+        <button class="chip" data-theme="coffee" aria-pressed="false">Coffee</button>
+      </fieldset>
+      <p id="reply" role="status" aria-live="polite">The eye is watching your pointer. Pick a look or roast the bean.</p>
+      <div class="roast">
+        <label for="roast">Roast the bean: <b id="roastName">Medium</b></label>
+        <input type="range" id="roast" min="1" max="5" value="3" aria-describedby="roastNote">
+        <div class="beanrow">
+          <svg id="bean" viewBox="0 0 120 80" aria-hidden="true"><ellipse id="beanBody" cx="60" cy="40" rx="48" ry="30" fill="#85582c" stroke="#141210" stroke-width="5"/><path d="M14 44 Q60 10 106 36" fill="none" stroke="#141210" stroke-width="5"/></svg>
+          <p id="roastNote">Round, nutty, easy to love.</p>
+        </div>
+      </div>
+    </div>
+    <div class="eyebox" aria-hidden="true">
+      <svg class="eye" viewBox="0 0 360 240">
+        <defs><pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.2" fill="#141210"/></pattern>
+        <clipPath id="lid"><path d="M10 120 Q180 -20 350 120 Q180 260 10 120Z"/></clipPath></defs>
+        <path d="M10 120 Q180 -20 350 120 Q180 260 10 120Z" fill="#efe9dc" stroke="#141210" stroke-width="6"/>
+        <g clip-path="url(#lid)">
+          <rect width="360" height="240" class="halftone" opacity=".35"/>
+          <g id="iris"><circle cx="180" cy="120" r="62" fill="var(--pop2)" stroke="#141210" stroke-width="5"/>
+          <circle id="pupil" cx="180" cy="120" r="28" fill="#141210"/><circle cx="168" cy="108" r="8" fill="#fff"/></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <h2>About</h2>
+  <div class="about">
+    <div>
+      <p>Hello, my name is Büşra Aydoğan. I am 23, and I am a student at Yaşar University in İzmir, where I study interactive media and learn how an idea becomes something a person can touch, click and play with.</p>
+      <p>I like to draw, explore new places and design new stuff. Drawing is how I think: a sketch comes before almost everything I make. Walking through a city I do not know teaches me how people find their way, and that feeds straight into how I plan navigation and layout.</p>
+      <p>Since 2021 I have also owned a coffee roasting business. Roasting taught me patience, small adjustments and listening to customers. A roast is never finished until someone tastes it, and I want my websites to work the same way: they answer the visitor.</p>
+      <p>In the future I want to be a web designer and a good communicator, someone who can talk with a client, understand what they need and turn it into a site that feels clear, friendly and a little surprising. I make things by sketching first, testing early with real people and changing the details until the design feels right.</p>
+    </div>
+    <aside class="facts">
+      <h3>Interests</h3>
+      <ul><li>Drawing and sketching</li><li>Exploring new places</li><li>Web and interaction design</li><li>Coffee roasting</li><li>Communication</li></ul>
+    </aside>
+  </div>
+</section>
+
+<section id="facts">
+  <h2>Fun facts</h2>
+  <div class="row sort"><button class="chip" id="flipAll" aria-pressed="false">Flip all cards</button></div>
+  <div class="deck" id="deck"></div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="row sort" role="group" aria-label="Order the projects">
+    <button class="chip" data-sort="course" aria-pressed="true">Course order</button>
+    <button class="chip" data-sort="az" aria-pressed="false">A to Z</button>
+    <button class="chip" data-sort="shuffle" aria-pressed="false">Shuffle</button>
+  </div>
+  <div class="splide" aria-label="Project folders" data-splide='{"perPage":3,"gap":"1.2rem","pagination":true,"breakpoints":{"980":{"perPage":2},"620":{"perPage":1}}}'>
+    <div class="splide__track"><ul class="splide__list" id="slides"></ul></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Contact</h2>
+  <div class="cgrid">
+    <div class="panel">
+      <div class="links">
+        <a class="btn" href="mailto:busraaydogan875@gmail.com">Email: busraaydogan875@gmail.com</a>
+        <a class="btn" href="https://www.tiktok.com/@busaydogan" target="_blank" rel="noopener">TikTok: @busaydogan</a>
+        <a class="btn" href="https://github.com/BusrAydoan/BusrAydoan.github.io/tree/main" target="_blank" rel="noopener">GitHub: BusrAydoan</a>
+      </div>
+    </div>
+    <div class="panel">
+      <label for="msg">Write a note and it becomes an email</label>
+      <textarea id="msg" placeholder="Hi Büşra…"></textarea>
+      <p id="mailStatus" role="status" aria-live="polite">Start typing: the button below fills itself in.</p>
+      <a class="btn" id="mailBtn" href="mailto:busraaydogan875@gmail.com">Open email</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© 2026 Büşra Aydoğan</span>
+  <ul>
+    <li>Credits: site built with Claude (Anthropic)</li>
+    <li>Carousel: <a href="https://splidejs.com/" target="_blank" rel="noopener">Splide</a></li>
+    <li>Fonts: Anton, Space Grotesk (Google Fonts)</li>
+    <li><a href="#top">Back to top</a></li>
+  </ul>
+</footer>
+
+<button class="music" id="music" aria-pressed="false">♪ Calm music: off</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
